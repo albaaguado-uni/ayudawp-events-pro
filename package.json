@@ -1,0 +1,11 @@
+{
+  "name": "ayudawp-events-pro",
+  "version": "1.0.0",
+  "description": "Professional events management plugin",
+  "scripts": {
+    "build": "echo 'No build configured yet'",
+    "lint:js": "echo 'No JS linting configured yet'",
+    "test:js": "echo 'No JS tests configured yet'"
+  },
+  "devDependencies": {}
+}
