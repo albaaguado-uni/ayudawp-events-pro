@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<phpunit
+    bootstrap="tests/bootstrap.php"
+    backupGlobals="false"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    >
+
+    <testsuites>
+        <testsuite name="unit">
+            <directory prefix="test-" suffix=".php">./tests/</directory>
+            <exclude>./tests/test-integration/</exclude>
+        </testsuite>
+        <testsuite name="integration">
+            <directory prefix="test-" suffix=".php">./tests/test-integration/</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- Code coverage (requires Xdebug or PCOV) -->
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./includes</directory>
+        </include>
+        <exclude>
+            <file>./includes/class-installer.php</file>
+        </exclude>
+        <report>
+            <html outputDirectory="coverage/html" lowUpperBound="50" highLowerBound="80"/>
+            <text outputFile="coverage/coverage.txt" showOnlySummary="true"/>
+            <clover outputFile="coverage/clover.xml"/>
+        </report>
+    </coverage>
+
+    <!-- PHP error/notice display during tests -->
+    <php>
+        <ini name="display_errors" value="1"/>
+        <ini name="error_reporting" value="-1"/>
+    </php>
+
+</phpunit>
