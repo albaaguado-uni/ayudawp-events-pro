@@ -1,0 +1,19 @@
+{
+    "name": "albaaguado/ayudawp-events-pro",
+    "description": "Plugin WordPress profesional con CI/CD",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Albaaguado\\AyudawpEventsPro\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "albaaguado",
+            "email": "alba@doowebs.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
