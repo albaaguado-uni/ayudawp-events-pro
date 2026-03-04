@@ -11,7 +11,7 @@ use AyudaWP\EventsPro\Form_Validator;
 use AyudaWP\EventsPro\Shortcodes;
 use AyudaWP\EventsPro\Installer;
 
-class Test_Security extends WP_UnitTestCase {
+class SecurityTest extends WP_UnitTestCase {
 
 	/** @var Attendees */
 	private $attendees;

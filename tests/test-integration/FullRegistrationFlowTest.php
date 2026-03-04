@@ -17,7 +17,7 @@ use AyudaWP\EventsPro\Post_Type;
 use AyudaWP\EventsPro\Shortcodes;
 use AyudaWP\EventsPro\Installer;
 
-class Test_Full_Registration_Flow extends WP_UnitTestCase {
+class FullRegistrationFlowTest extends WP_UnitTestCase {
 
 	/** @var Attendees */
 	private $attendees;

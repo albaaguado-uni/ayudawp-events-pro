@@ -9,7 +9,7 @@ use AyudaWP\EventsPro\Attendees;
 use AyudaWP\EventsPro\REST_API;
 use AyudaWP\EventsPro\Installer;
 
-class Test_REST_API extends WP_UnitTestCase {
+class RestApiTest extends WP_UnitTestCase {
 
 	/** @var REST_API */
 	private $rest_api;

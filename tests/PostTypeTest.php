@@ -7,7 +7,7 @@
 
 use AyudaWP\EventsPro\Post_Type;
 
-class Test_Post_Type extends WP_UnitTestCase {
+class PostTypeTest extends WP_UnitTestCase {
 
 	/** @var Post_Type */
 	private $post_type;

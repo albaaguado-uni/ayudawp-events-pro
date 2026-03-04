@@ -7,7 +7,7 @@
 
 use AyudaWP\EventsPro\Coupon_System;
 
-class Test_Coupon_System extends WP_UnitTestCase {
+class CouponSystemTest extends WP_UnitTestCase {
 
 	/** @var Coupon_System */
 	private $coupons;

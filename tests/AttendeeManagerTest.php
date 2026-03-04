@@ -8,7 +8,7 @@
 use AyudaWP\EventsPro\Attendees;
 use AyudaWP\EventsPro\Installer;
 
-class Test_Attendee_Manager extends WP_UnitTestCase {
+class AttendeeManagerTest extends WP_UnitTestCase {
 
 	/** @var Attendees */
 	private $attendees;

@@ -7,7 +7,7 @@
 
 use AyudaWP\EventsPro\Google_Calendar;
 
-class Test_Google_Calendar extends WP_UnitTestCase {
+class GoogleCalendarTest extends WP_UnitTestCase {
 
 	/** @var Google_Calendar */
 	private $gc;

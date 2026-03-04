@@ -35,7 +35,7 @@ class REST_API {
 			'callback'            => array( $this, 'get_event' ),
 			'permission_callback' => '__return_true',
 			'args'                => array(
-				'id' => array( 'validate_callback' => 'is_numeric' ),
+				'id' => array( 'validate_callback' => function( $value ) { return is_numeric( $value ); } ),
 			),
 		) );
 

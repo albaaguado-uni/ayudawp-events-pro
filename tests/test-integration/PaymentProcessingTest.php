@@ -18,7 +18,7 @@ use AyudaWP\EventsPro\Coupon_System;
 use AyudaWP\EventsPro\Notification_System;
 use AyudaWP\EventsPro\Installer;
 
-class Test_Payment_Processing extends WP_UnitTestCase {
+class PaymentProcessingTest extends WP_UnitTestCase {
 
 	/** @var Attendees */
 	private $attendees;

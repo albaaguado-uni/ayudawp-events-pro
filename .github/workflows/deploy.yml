@@ -1,0 +1,106 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - develop
+  release:
+    types: [published]
+
+jobs:
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    environment:
+      name: staging
+      url: https://staging.example.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Install Composer dependencies (no dev)
+        run: composer install --no-dev --prefer-dist --optimize-autoloader
+
+      - name: Create deployment package
+        run: |
+          mkdir -p deploy
+          rsync -av --exclude-from='.deployignore' ./ deploy/
+
+      - name: Simulate staging deployment
+        run: |
+          echo "Deployment package created successfully"
+          echo "Files in package:"
+          find deploy -type f | head -20
+          echo "..."
+          echo "Total files: $(find deploy -type f | wc -l)"
+          echo "Package size: $(du -sh deploy | cut -f1)"
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    environment:
+      name: production
+      url: https://example.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --prefer-dist --optimize-autoloader
+
+      - name: Create release package
+        run: |
+          mkdir -p release
+          rsync -av --exclude-from='.deployignore' ./ release/
+          cd release
+          zip -r ../ayudawp-events-pro-${{ github.event.release.tag_name }}.zip .
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./ayudawp-events-pro-${{ github.event.release.tag_name }}.zip
+          asset_name: ayudawp-events-pro-${{ github.event.release.tag_name }}.zip
+          asset_content_type: application/zip
+
+      - name: Simulate production deployment
+        run: |
+          echo "Release ${{ github.event.release.tag_name }} ready for production"
+          echo "Package: ayudawp-events-pro-${{ github.event.release.tag_name }}.zip"
+          echo "Size: $(ls -lh ayudawp-events-pro-${{ github.event.release.tag_name }}.zip | awk '{print $5}')"

@@ -7,7 +7,7 @@
 
 use AyudaWP\EventsPro\Form_Validator;
 
-class Test_Form_Validation extends WP_UnitTestCase {
+class FormValidationTest extends WP_UnitTestCase {
 
 	/** @var Form_Validator */
 	private $validator;

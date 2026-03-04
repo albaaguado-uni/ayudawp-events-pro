@@ -9,7 +9,7 @@ use AyudaWP\EventsPro\Attendees;
 use AyudaWP\EventsPro\Shortcodes;
 use AyudaWP\EventsPro\Installer;
 
-class Test_Shortcode extends WP_UnitTestCase {
+class ShortcodeTest extends WP_UnitTestCase {
 
 	/** @var Shortcodes */
 	private $shortcodes;

@@ -7,7 +7,7 @@
 
 use AyudaWP\EventsPro\Notification_System;
 
-class Test_Notification_System extends WP_UnitTestCase {
+class NotificationSystemTest extends WP_UnitTestCase {
 
 	/** @var Notification_System */
 	private $notifier;
