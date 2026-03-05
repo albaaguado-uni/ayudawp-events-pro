@@ -70,14 +70,14 @@ jobs:
         run: bash bin/install-wp-tests.sh wordpress_tests root root 127.0.0.1 6.6.2 true
         env:
           WP_TESTS_DIR: /tmp/wordpress-tests-lib
-          WP_CORE_DIR: /tmp/wordpress
+          WP_CORE_DIR: /tmp/wordpress/
           TMPDIR: /tmp
 
       - name: Run PHPUnit
         run: vendor/bin/phpunit
         env:
           WP_TESTS_DIR: /tmp/wordpress-tests-lib
-          WP_CORE_DIR: /tmp/wordpress
+          WP_CORE_DIR: /tmp/wordpress/
 
   jest:
     name: JavaScript Tests
