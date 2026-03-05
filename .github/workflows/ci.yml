@@ -68,6 +68,7 @@ jobs:
         env:
           WP_TESTS_DIR: /tmp/wordpress-tests-lib
           WP_CORE_DIR: /tmp/wordpress
+          TMPDIR: /tmp
 
       - name: Run PHPUnit
         run: vendor/bin/phpunit
