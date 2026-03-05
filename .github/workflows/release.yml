@@ -8,8 +8,6 @@ on:
 permissions:
   contents: write
 
-jobs:
-  create-release:
 
 jobs:
   create-release:
