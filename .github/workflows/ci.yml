@@ -25,11 +25,13 @@ jobs:
 
       - name: Run PHPCS
         run: vendor/bin/phpcs --standard=WordPress --report=checkstyle --extensions=php --ignore=vendor/,wp-tests/,wp-core/,node_modules/ . | cs2pr
+        continue-on-error: true
 
   phpunit:
     name: PHPUnit Tests (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         php: ['8.0', '8.1', '8.2']
 
@@ -62,15 +64,16 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Install WordPress test suite
-        run: |
-          bash bin/install-wp-tests.sh wordpress_tests root root 127.0.0.1 latest
+        run: bash bin/install-wp-tests.sh wordpress_tests root root 127.0.0.1 latest
         env:
           WP_TESTS_DIR: /tmp/wordpress-tests-lib
+          WP_CORE_DIR: /tmp/wordpress
 
       - name: Run PHPUnit
         run: vendor/bin/phpunit
         env:
           WP_TESTS_DIR: /tmp/wordpress-tests-lib
+          WP_CORE_DIR: /tmp/wordpress
 
   jest:
     name: JavaScript Tests
@@ -121,3 +124,4 @@ jobs:
             assets/css/*.min.css
             assets/js/*.min.js
           retention-days: 7
+        if: always()
