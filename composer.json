@@ -18,6 +18,9 @@
     "config": {
         "audit": {
             "block-insecure": false
+        },
+        "platform": {
+            "php": "8.0.0"
         }
     },
     "require-dev": {
